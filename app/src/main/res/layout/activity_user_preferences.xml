@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".preferences.UserPreferences"
+    tools:context=".preferences.UserPreferencesActivity"
     android:padding="16dp"
     android:id="@+id/constraint_layout_preferences"
     android:fitsSystemWindows="true">
@@ -28,15 +28,32 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/text_view_preferences_label"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        android:hint="@string/hint_introduce_a_preference"
+        android:paddingStart="16dp"/>
+
+
+    <TextView
+        android:id="@+id/text_view_label_introduced_preferences"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_preferences"
+        android:text="@string/label_introduced_preferences"
+        android:layout_marginLeft="8dp"/>
 
     <TextView
         android:id="@+id/text_view_preference_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center|left"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_text_preferences"/>
+        app:layout_constraintTop_toBottomOf="@id/text_view_label_introduced_preferences"
+        android:background="#ccc"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"/>
 
     <Button
         android:id="@+id/button_clear_list"
@@ -44,7 +61,26 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_preference_list"
-        android:text="Stergere preferinte"/>
+        app:layout_constraintRight_toLeftOf="@id/button_save_preferences"
+        android:text="@string/label_button_delete_preferences"
+        android:textColor="@android:color/white"
+        android:background="@drawable/ripple_button"
+        android:padding="8dp"
+        android:layout_margin="8dp"/>
+
+    <Button
+        android:id="@+id/button_save_preferences"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/button_clear_list"
+        app:layout_constraintTop_toBottomOf="@id/text_view_preference_list"
+        app:layout_constraintRight_toLeftOf="@id/fab_add_preference"
+        android:text="@string/label_button_save_preferences"
+        android:textColor="@android:color/white"
+        android:background="@drawable/ripple_button"
+        android:padding="8dp"
+        android:layout_margin="8dp"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_preference"
@@ -52,7 +88,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:src="@drawable/ic_add_white_24"/>
+        app:layout_constraintLeft_toRightOf="@id/button_save_preferences"
+        android:src="@drawable/ic_add_white_24"
+        android:background="@drawable/ripple_button"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

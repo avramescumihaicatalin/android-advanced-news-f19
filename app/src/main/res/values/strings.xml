@@ -4,4 +4,8 @@
     <string name="article_title">Title</string>
     <string name="article_description">Short description of article Short description of article Short description of article Short description of article Short description of article Short description of article Short description of article</string>
     <string name="label_preference">Introduceti categoriile preferate de stiri</string>
+    <string name="label_button_delete_preferences">Stergeti\n preferinte</string>
+    <string name="hint_introduce_a_preference">Introduceti o preferinta</string>
+    <string name="label_button_save_preferences">Salveaza\n preferinte</string>
+    <string name="label_introduced_preferences">Preferinte introduse:</string>
 </resources>

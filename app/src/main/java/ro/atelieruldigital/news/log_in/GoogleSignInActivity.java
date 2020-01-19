@@ -22,9 +22,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import ro.atelieruldigital.news.App;
 import ro.atelieruldigital.news.R;
 import ro.atelieruldigital.news.core.BaseActivity;
 import ro.atelieruldigital.news.home.HomeActivity;
+import ro.atelieruldigital.news.preferences.UserPreferencesActivity;
+import ro.atelieruldigital.news.utils.PrefUtils;
 import timber.log.Timber;
 
 /**
@@ -79,8 +82,14 @@ public class GoogleSignInActivity extends BaseActivity implements
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             updateUI(currentUser);
-            Intent goToHomeActIntent = new Intent(this, HomeActivity.class);
-            startActivity(goToHomeActIntent);
+            if (!PrefUtils.getUser(App.getAppContext()).equals(mAuth.getCurrentUser().getEmail())) {
+                PrefUtils.setUser(App.getAppContext(), mAuth.getCurrentUser().getEmail());
+                Intent goToUserPreferencesActivity = new Intent(this, UserPreferencesActivity.class);
+                startActivity(goToUserPreferencesActivity);
+            } else {
+                Intent goToHomeActIntent = new Intent(this, HomeActivity.class);
+                startActivity(goToHomeActIntent);
+            }
         }
     }
     // [END on_start_check_user]

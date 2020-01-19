@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -17,13 +18,15 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 import ro.atelieruldigital.news.R;
+import ro.atelieruldigital.news.utils.PrefUtils;
 
-public class UserPreferences extends AppCompatActivity implements View.OnClickListener {
+public class UserPreferencesActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText mEditTextPreferences;
     TextView mTextViewPreferencesList;
     FloatingActionButton mFab;
     Button mButtonClearList;
+    Button mButtonSavePreferences;
     ConstraintLayout mConstraintLayoutPreferences;
 
     ArrayList<String> mPreferencesList;
@@ -35,10 +38,10 @@ public class UserPreferences extends AppCompatActivity implements View.OnClickLi
 
         initView();
 
+        mTextViewPreferencesList.setText(PrefUtils.getUserPreferences(this));
         mPreferencesList = new ArrayList<>();
         mFab.setOnClickListener(this);
         mButtonClearList.setOnClickListener(this);
-
 
     }
 
@@ -46,6 +49,7 @@ public class UserPreferences extends AppCompatActivity implements View.OnClickLi
         mEditTextPreferences = findViewById(R.id.edit_text_preferences);
         mFab = findViewById(R.id.fab_add_preference);
         mButtonClearList = findViewById(R.id.button_clear_list);
+        mButtonSavePreferences = findViewById(R.id.button_save_preferences);
         mConstraintLayoutPreferences = findViewById(R.id.constraint_layout_preferences);
         mTextViewPreferencesList = findViewById(R.id.text_view_preference_list);
     }
@@ -61,16 +65,26 @@ public class UserPreferences extends AppCompatActivity implements View.OnClickLi
                 clearPreferencesList();
                 break;
             }
+            case R.id.button_save_preferences: {
+                savePreferences();
+                break;
+            }
         }
 
     }
 
+    private void savePreferences() {
+        PrefUtils.setUserPreferences(this, mTextViewPreferencesList.getText().toString());
+    }
+
     private void clearPreferencesList() {
+        mButtonClearList.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorGrey));
         mPreferencesList.clear();
         mTextViewPreferencesList.setText("");
     }
 
     private void addPreference() {
+        mButtonClearList.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent));
         String introducedText;
         String previousText;
         if (mEditTextPreferences != null && !TextUtils.isEmpty(mEditTextPreferences.getText())) {
