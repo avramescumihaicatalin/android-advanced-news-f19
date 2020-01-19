@@ -30,7 +30,8 @@
                 android:text="@string/article_title"
                 app:layout_constraintTop_toBottomOf="@id/image_view"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:paddingBottom="8dp"/>
+                android:paddingBottom="8dp"
+                />
 
             <TextView
                 android:id="@+id/text_view_description"
