@@ -56,7 +56,6 @@ public class HomeActivity extends BaseActivity {
         call.enqueue(new Callback<ArticleResponse>() {
             @Override
             public void onResponse(@NotNull Call<ArticleResponse> call, @NotNull Response<ArticleResponse> response) {
-
                 if (response.body() != null) {
                     ArticleResponse articleResponse = response.body();
                     mArticles = articleResponse.getArticles();
