@@ -105,7 +105,7 @@ public class GoogleSignInActivity extends BaseActivity implements
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                Log.d(TAG, "Aici se strica treaba ");
+                Log.d(TAG, " Aici se strica treaba ");
                 firebaseAuthWithGoogle(account);
                 Intent goToHomeActIntent = new Intent(this, HomeActivity.class);
                 startActivity(goToHomeActIntent);
