@@ -3,11 +3,8 @@ package ro.atelieruldigital.news.log_in;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -21,8 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
 import ro.atelieruldigital.news.App;
+
 import ro.atelieruldigital.news.R;
 import ro.atelieruldigital.news.core.BaseActivity;
 import ro.atelieruldigital.news.home.HomeActivity;
@@ -80,6 +77,8 @@ public class GoogleSignInActivity extends BaseActivity implements
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        Timber.e("Current user email: "+currentUser.getEmail().toString());
+
         if (currentUser != null) {
             updateUI(currentUser);
             if (!PrefUtils.getUser(this).equals(mAuth.getCurrentUser().getEmail())) {

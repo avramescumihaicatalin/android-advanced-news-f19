@@ -15,7 +15,7 @@ class CustomVerticalViewHolder extends RecyclerView.ViewHolder {
     public CustomVerticalViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        mTextView = itemView.findViewById(R.id.text_view);
+        mTextView = itemView.findViewById(R.id.category_text_view);
         mHorizontalRecyclerView = itemView.findViewById(R.id.horizontal_recycler_view);
     }
 }
