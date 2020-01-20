@@ -82,8 +82,8 @@ public class GoogleSignInActivity extends BaseActivity implements
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             updateUI(currentUser);
-            if (!PrefUtils.getUser(App.getAppContext()).equals(mAuth.getCurrentUser().getEmail())) {
-                PrefUtils.setUser(App.getAppContext(), mAuth.getCurrentUser().getEmail());
+            if (!PrefUtils.getUser(this).equals(mAuth.getCurrentUser().getEmail())) {
+                PrefUtils.setUser(this, mAuth.getCurrentUser().getEmail());
                 Intent goToUserPreferencesActivity = new Intent(this, UserPreferencesActivity.class);
                 startActivity(goToUserPreferencesActivity);
             } else {

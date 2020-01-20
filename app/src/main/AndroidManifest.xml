@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".preferences.UserPreferencesActivity"
+        <activity android:name=".search.SearchActivity"></activity>
+        <activity
+            android:name=".preferences.UserPreferencesActivity"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,9 +26,7 @@
         </activity>
         <activity android:name=".log_in.BaseActivity" />
         <activity android:name=".home.HomeActivity" />
-        <activity android:name=".log_in.GoogleSignInActivity">
-
-        </activity>
+        <activity android:name=".log_in.GoogleSignInActivity"></activity>
     </application>
 
 </manifest>
