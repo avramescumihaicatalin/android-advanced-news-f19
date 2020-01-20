@@ -2,6 +2,7 @@ package ro.atelieruldigital.news.recycler_view;
 
 import android.app.LauncherActivity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +18,13 @@ import java.util.ArrayList;
 import ro.atelieruldigital.news.App;
 import ro.atelieruldigital.news.R;
 import ro.atelieruldigital.news.model.ArticleResponse;
+import ro.atelieruldigital.news.web_view.WebViewActivity;
 import timber.log.Timber;
 
 public class CustomHorizontalAdapter extends RecyclerView.Adapter<CustomHorizontalViewHolder> {
 
     private ArrayList<ArticleResponse.Article> mArticleList;
+    public static final String WEB_VIEW_URL = "WEB_VIEW_URL";
 
     public CustomHorizontalAdapter(ArrayList<ArticleResponse.Article> articleList) {
         this.mArticleList = articleList;
@@ -41,7 +44,7 @@ public class CustomHorizontalAdapter extends RecyclerView.Adapter<CustomHorizont
         holder.mButtonFindMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent webViewIntent = new Intent(holder, )
+                startWebViewActivity(position);
             }
         });
     }
@@ -51,4 +54,17 @@ public class CustomHorizontalAdapter extends RecyclerView.Adapter<CustomHorizont
         return mArticleList.size();
     }
 
+    private void startWebViewActivity(int position) {
+        Bundle bundle = new Bundle();
+        String URL = mArticleList.get(position).getArticleURL().toString();
+        if (URL != null) {
+            bundle.putString(WEB_VIEW_URL, URL);
+            Intent intentWebView = new Intent(App.getAppContext(), WebViewActivity.class);
+            intentWebView.putExtras(bundle);
+            intentWebView.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            App.getAppContext().startActivity(intentWebView);
+        } else {
+            Toast.makeText(App.getAppContext(), "Nu exista un URL valid pentru acest articol", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

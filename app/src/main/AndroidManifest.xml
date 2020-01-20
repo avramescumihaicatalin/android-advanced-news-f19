@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".search.SearchActivity"></activity>
+        <activity android:name=".web_view.WebViewActivity"></activity>
+        <activity android:name=".search.SearchActivity" />
         <activity
             android:name=".preferences.UserPreferencesActivity"
             android:windowSoftInputMode="adjustResize">
@@ -31,7 +32,7 @@
 
         <activity android:name=".log_in.BaseActivity" />
         <activity android:name=".home.HomeActivity" />
-        <activity android:name=".log_in.GoogleSignInActivity"></activity>
+        <activity android:name=".log_in.GoogleSignInActivity" />
     </application>
 
 </manifest>

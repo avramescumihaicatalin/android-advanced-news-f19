@@ -14,7 +14,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        context = App.getAppContext();
+        context = getApplicationContext();
         if (BuildConfig.DEBUG)
             Timber.plant(new Timber.DebugTree());
 
