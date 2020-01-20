@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +26,7 @@ import ro.atelieruldigital.news.model.ArticleResponse;
 import ro.atelieruldigital.news.model.NewsAPIRequests;
 import ro.atelieruldigital.news.model.WebService.NewsWebService;
 import ro.atelieruldigital.news.recycler_view.CustomVerticalAdapter;
+import ro.atelieruldigital.news.utils.PrefUtils;
 import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity {
@@ -41,9 +45,9 @@ public class HomeActivity extends BaseActivity {
 
     private void setPreferencesListForTest() {
         mPreferences = new ArrayList<>();
-        mPreferences.add("sport");
-        mPreferences.add("fotbal");
-        mPreferences.add("masini");
+        String userSavedPreferences = PrefUtils.getUserPreferences(this);
+        String str[] = userSavedPreferences.split(",");
+        mPreferences = new ArrayList<>(Arrays.asList(str));
     }
 
     private void getDataFromServer() {

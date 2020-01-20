@@ -3,6 +3,7 @@ package ro.atelieruldigital.news.preferences;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,6 +19,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 import ro.atelieruldigital.news.R;
+import ro.atelieruldigital.news.home.HomeActivity;
 import ro.atelieruldigital.news.utils.PrefUtils;
 
 public class UserPreferencesActivity extends AppCompatActivity implements View.OnClickListener {
@@ -42,6 +44,18 @@ public class UserPreferencesActivity extends AppCompatActivity implements View.O
         mPreferencesList = new ArrayList<>();
         mFab.setOnClickListener(this);
         mButtonClearList.setOnClickListener(this);
+        mButtonSavePreferences.setOnClickListener(this);
+
+        getPreferedList();
+    }
+
+    private void getPreferedList() {
+        if (TextUtils.isEmpty(PrefUtils.getUserPreferences(this))) {
+            clearPreferencesList();
+        } else {
+            mButtonClearList.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent));
+            mTextViewPreferencesList.setText(PrefUtils.getUserPreferences(this));
+        }
 
     }
 
@@ -74,7 +88,10 @@ public class UserPreferencesActivity extends AppCompatActivity implements View.O
     }
 
     private void savePreferences() {
+        Toast.makeText(this, "Preferintele au fost salvate", Toast.LENGTH_SHORT).show();
         PrefUtils.setUserPreferences(this, mTextViewPreferencesList.getText().toString());
+        Intent goToHomeActivity = new Intent(this, HomeActivity.class);
+        startActivity(goToHomeActivity);
     }
 
     private void clearPreferencesList() {
