@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +26,7 @@ import ro.atelieruldigital.news.model.ArticleResponse;
 import ro.atelieruldigital.news.model.NewsAPIRequests;
 import ro.atelieruldigital.news.model.WebService.NewsWebService;
 import ro.atelieruldigital.news.recycler_view.CustomVerticalAdapter;
+import ro.atelieruldigital.news.utils.PrefUtils;
 import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity {
@@ -41,24 +45,22 @@ public class HomeActivity extends BaseActivity {
 
     private void setPreferencesListForTest() {
         mPreferences = new ArrayList<>();
-        mPreferences.add("sport");
-        mPreferences.add("fotbal");
-        mPreferences.add("masini");
-        mPreferences.add("masini");
-        mPreferences.add("masini");
-        mPreferences.add("masini");
+        String userSavedPreferences = PrefUtils.getUserPreferences(this);
+        String str[] = userSavedPreferences.split(",");
+        mPreferences = new ArrayList<>(Arrays.asList(str));
     }
 
     private void getDataFromServer() {
         Retrofit newsWebServiceRetrofit = NewsWebService.getRetrofitClient();
         NewsAPIRequests newsAPIRequests = newsWebServiceRetrofit.create(NewsAPIRequests.class);
 
-        Call<ArticleResponse> call = newsAPIRequests.queryArticles("bmw", "?", "?",
-                "published", "534a091354c14911aa44a800e5270924");
+        Call<ArticleResponse> call = newsAPIRequests.queryArticles("apple", "2020-01-12", "2020-01-12",
+                "popularity", "534a091354c14911aa44a800e5270924");
 
         call.enqueue(new Callback<ArticleResponse>() {
             @Override
             public void onResponse(@NotNull Call<ArticleResponse> call, @NotNull Response<ArticleResponse> response) {
+
                 if (response.body() != null) {
                     ArticleResponse articleResponse = response.body();
                     mArticles = articleResponse.getArticles();
