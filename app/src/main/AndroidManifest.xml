@@ -14,8 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".preferences.UserPreferencesActivity"
-            android:windowSoftInputMode="adjustResize">
+        <activity
+            android:name=".preferences.UserPreferencesActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity android:name=".log_in.BaseActivity" />
+        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".log_in.GoogleSignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,12 +31,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <activity android:name=".log_in.BaseActivity" />
-        <activity android:name=".home.HomeActivity" />
-        <activity android:name=".log_in.GoogleSignInActivity">
-
-        </activity>
     </application>
 
 </manifest>

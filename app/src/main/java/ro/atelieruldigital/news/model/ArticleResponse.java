@@ -21,7 +21,8 @@ public class ArticleResponse {
     Integer totalResults;
     @SerializedName("articles")
     @Expose
-    ArrayList<Article> articles;
+    private
+    ArrayList<Article> articles = null;
 
     public String getStatus() {
         return status;
