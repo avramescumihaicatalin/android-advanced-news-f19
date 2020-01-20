@@ -9,4 +9,6 @@
     <string name="label_button_save_preferences">Salveaza\n preferinte</string>
     <string name="label_introduced_preferences">Preferinte introduse:</string>
     <string name="label_button_chose_a_date">Alegeti o data</string>
+    <string name="label_chose_a_date">Alegeti o data:</string>
+    <string name="label_sorted_by">Sortate dupa:</string>
 </resources>
