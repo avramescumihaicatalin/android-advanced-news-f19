@@ -2,6 +2,7 @@ package ro.atelieruldigital.news.log_in;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -77,9 +78,9 @@ public class GoogleSignInActivity extends BaseActivity implements
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        Timber.e("Current user email: "+currentUser.getEmail().toString());
-
+        //Timber.e("Current user email: "+currentUser.getEmail().toString());
         if (currentUser != null) {
+            Log.d(TAG, currentUser.getEmail().toString());
             updateUI(currentUser);
             if (!PrefUtils.getUser(this).equals(mAuth.getCurrentUser().getEmail())) {
                 PrefUtils.setUser(this, mAuth.getCurrentUser().getEmail());
@@ -104,6 +105,7 @@ public class GoogleSignInActivity extends BaseActivity implements
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
+                Log.d(TAG, "Aici se strica treaba");
                 firebaseAuthWithGoogle(account);
                 Intent goToHomeActIntent = new Intent(this, HomeActivity.class);
                 startActivity(goToHomeActIntent);
@@ -196,7 +198,6 @@ public class GoogleSignInActivity extends BaseActivity implements
             findViewById(R.id.signInButton).setVisibility(View.GONE);
             findViewById(R.id.signOutAndDisconnect).setVisibility(View.VISIBLE);
         } else {
-
             Toast.makeText(this,"Singed out",Toast.LENGTH_LONG).show();
 
             findViewById(R.id.signInButton).setVisibility(View.VISIBLE);
