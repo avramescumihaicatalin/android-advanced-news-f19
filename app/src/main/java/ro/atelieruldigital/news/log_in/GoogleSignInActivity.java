@@ -73,6 +73,8 @@ public class GoogleSignInActivity extends BaseActivity implements
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        Timber.e("Current user email: "+currentUser.getEmail().toString());
+
         if (currentUser != null) {
             updateUI(currentUser);
             Intent goToHomeActIntent = new Intent(this, HomeActivity.class);

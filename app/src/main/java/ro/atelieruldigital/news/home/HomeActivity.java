@@ -44,14 +44,17 @@ public class HomeActivity extends BaseActivity {
         mPreferences.add("sport");
         mPreferences.add("fotbal");
         mPreferences.add("masini");
+        mPreferences.add("masini");
+        mPreferences.add("masini");
+        mPreferences.add("masini");
     }
 
     private void getDataFromServer() {
         Retrofit newsWebServiceRetrofit = NewsWebService.getRetrofitClient();
         NewsAPIRequests newsAPIRequests = newsWebServiceRetrofit.create(NewsAPIRequests.class);
 
-        Call<ArticleResponse> call = newsAPIRequests.queryArticles("apple", "2020-01-12", "2020-01-12",
-                "popularity", "534a091354c14911aa44a800e5270924");
+        Call<ArticleResponse> call = newsAPIRequests.queryArticles("bmw", "?", "?",
+                "published", "534a091354c14911aa44a800e5270924");
 
         call.enqueue(new Callback<ArticleResponse>() {
             @Override
