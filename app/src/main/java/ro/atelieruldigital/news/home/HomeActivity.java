@@ -2,7 +2,6 @@ package ro.atelieruldigital.news.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,10 +15,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,6 +39,7 @@ public class HomeActivity extends BaseActivity {
 
     ArrayList<ArticleResponse.Article> mArticles;
     ArrayList<String> mPreferences;
+    HashMap<String, ArrayList<ArticleResponse.Article>> mDataSet;
 
     FloatingActionButton fabSearch;
 
@@ -51,7 +50,7 @@ public class HomeActivity extends BaseActivity {
 
         initView();
 
-        setPreferencesListForTest();
+        setPreferencesList();
         getDataFromServer();
     }
 
@@ -59,7 +58,7 @@ public class HomeActivity extends BaseActivity {
         fabSearch = findViewById(R.id.fab_search);
     }
 
-    private void setPreferencesListForTest() {
+    private void setPreferencesList() {
         mPreferences = new ArrayList<>();
         String userSavedPreferences = PrefUtils.getUserPreferences(this);
         String str[] = userSavedPreferences.split(",");
@@ -67,10 +66,15 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void getDataFromServer() {
+        mDataSet = new HashMap<>();
+        getDataAndSaveToDataSet(mPreferences.get(0));
+    }
+
+    private void getDataAndSaveToDataSet(String searchString) {
         Retrofit newsWebServiceRetrofit = NewsWebService.getRetrofitClient();
         NewsAPIRequests newsAPIRequests = newsWebServiceRetrofit.create(NewsAPIRequests.class);
 
-        Call<ArticleResponse> call = newsAPIRequests.queryArticles("apple", "2020-01-12", "2020-01-12",
+        Call<ArticleResponse> call = newsAPIRequests.queryArticles(searchString, "2020-01-12", "2020-01-12",
                 "popularity", "534a091354c14911aa44a800e5270924");
 
         call.enqueue(new Callback<ArticleResponse>() {
@@ -80,7 +84,14 @@ public class HomeActivity extends BaseActivity {
                 if (response.body() != null) {
                     ArticleResponse articleResponse = response.body();
                     mArticles = articleResponse.getArticles();
-                    setRecyclerView();
+
+                    mDataSet.put(searchString, mArticles);
+
+                    if (mDataSet.size() < mPreferences.size()) {
+                        getDataAndSaveToDataSet(mPreferences.get(mDataSet.size()));
+                    } else if (mDataSet.size() == mPreferences.size()) {
+                        setRecyclerView();
+                    }
                 }
             }
 
@@ -96,7 +107,7 @@ public class HomeActivity extends BaseActivity {
     private void setRecyclerView() {
         RecyclerView verticalRecyclerView = findViewById(R.id.vertical_recycler_view);
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(App.getAppContext(), RecyclerView.VERTICAL, false));
-        CustomVerticalAdapter customVerticalAdapter = new CustomVerticalAdapter(mArticles, mPreferences);
+        CustomVerticalAdapter customVerticalAdapter = new CustomVerticalAdapter(mDataSet, mPreferences);
         verticalRecyclerView.setAdapter(customVerticalAdapter);
     }
 

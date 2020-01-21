@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import ro.atelieruldigital.news.App;
 import ro.atelieruldigital.news.R;
@@ -15,11 +16,11 @@ import ro.atelieruldigital.news.model.ArticleResponse;
 
 public class CustomVerticalAdapter extends RecyclerView.Adapter<CustomVerticalViewHolder> {
 
-    private ArrayList<ArticleResponse.Article> mArticleList;
+    private HashMap<String, ArrayList<ArticleResponse.Article>> mDataSet;
     private ArrayList<String> mPreferences;
 
-    public CustomVerticalAdapter(ArrayList<ArticleResponse.Article> articleList, ArrayList<String> preferencesList) {
-        this.mArticleList = articleList;
+    public CustomVerticalAdapter(HashMap<String, ArrayList<ArticleResponse.Article>> mDataSet, ArrayList<String> preferencesList) {
+        this.mDataSet = mDataSet;
         this.mPreferences = preferencesList;
     }
 
@@ -34,7 +35,7 @@ public class CustomVerticalAdapter extends RecyclerView.Adapter<CustomVerticalVi
     public void onBindViewHolder(@NonNull CustomVerticalViewHolder holder, int position) {
         holder.mTextView.setText(mPreferences.get(position));
         holder.mHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(App.getAppContext(), RecyclerView.HORIZONTAL, false));
-        CustomHorizontalAdapter customHorizontalAdapter = new CustomHorizontalAdapter(mArticleList);
+        CustomHorizontalAdapter customHorizontalAdapter = new CustomHorizontalAdapter(mDataSet.get(mPreferences.get(position)));
         holder.mHorizontalRecyclerView.setAdapter(customHorizontalAdapter);
 
     }
