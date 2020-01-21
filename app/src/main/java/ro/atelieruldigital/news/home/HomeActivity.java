@@ -113,7 +113,7 @@ public class HomeActivity extends BaseActivity {
 
     public void onBackPressed() {
         Timber.d("onBackPressed Called");
-        Toast.makeText(this,"Back button pressed. Exit App",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Back button pressed. Exit App", Toast.LENGTH_LONG).show();
         Intent setIntent = new Intent(Intent.ACTION_MAIN);
         setIntent.addCategory(Intent.CATEGORY_HOME);
         setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
