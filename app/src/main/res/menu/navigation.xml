@@ -11,4 +11,9 @@
         android:orderInCategory="100"
         android:title="Search"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_edit_preferences"
+        android:orderInCategory="100"
+        android:title="Edit Preferences"
+        app:showAsAction="never" />
 </menu>

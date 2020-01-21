@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,6 +33,7 @@ import ro.atelieruldigital.news.log_in.GoogleSignInActivity;
 import ro.atelieruldigital.news.model.ArticleResponse;
 import ro.atelieruldigital.news.model.NewsAPIRequests;
 import ro.atelieruldigital.news.model.WebService.NewsWebService;
+import ro.atelieruldigital.news.preferences.UserPreferencesActivity;
 import ro.atelieruldigital.news.recycler_view.CustomVerticalAdapter;
 import ro.atelieruldigital.news.search.SearchActivity;
 import ro.atelieruldigital.news.utils.PrefUtils;
@@ -41,7 +45,8 @@ public class HomeActivity extends BaseActivity {
     ArrayList<String> mPreferences;
     HashMap<String, ArrayList<ArticleResponse.Article>> mDataSet;
 
-    FloatingActionButton fabSearch;
+    FloatingActionButton mFabSearch;
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,9 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initView() {
-        fabSearch = findViewById(R.id.fab_search);
+        mFabSearch = findViewById(R.id.fab_search);
+        mProgressBar = findViewById(R.id.progress_bar_get_data);
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     private void setPreferencesList() {
@@ -74,7 +81,10 @@ public class HomeActivity extends BaseActivity {
         Retrofit newsWebServiceRetrofit = NewsWebService.getRetrofitClient();
         NewsAPIRequests newsAPIRequests = newsWebServiceRetrofit.create(NewsAPIRequests.class);
 
-        Call<ArticleResponse> call = newsAPIRequests.queryArticles(searchString, "2020-01-12", "2020-01-12",
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String currentDate = dtf.format(LocalDateTime.now());
+
+        Call<ArticleResponse> call = newsAPIRequests.queryArticles(searchString, "currentDate-01-12", "currentDate",
                 "popularity", "534a091354c14911aa44a800e5270924");
 
         call.enqueue(new Callback<ArticleResponse>() {
@@ -91,6 +101,7 @@ public class HomeActivity extends BaseActivity {
                         getDataAndSaveToDataSet(mPreferences.get(mDataSet.size()));
                     } else if (mDataSet.size() == mPreferences.size()) {
                         setRecyclerView();
+                        mProgressBar.setVisibility(View.INVISIBLE);
                     }
                 }
             }
@@ -147,6 +158,12 @@ public class HomeActivity extends BaseActivity {
         if (id == R.id.action_search) {
             Intent intentGoToSearchActivity = new Intent(this, SearchActivity.class);
             startActivity(intentGoToSearchActivity);
+            return true;
+        }
+
+        if (id == R.id.action_edit_preferences) {
+            Intent intentGoToPreferencesActivity = new Intent(this, UserPreferencesActivity.class);
+            startActivity(intentGoToPreferencesActivity);
             return true;
         }
 

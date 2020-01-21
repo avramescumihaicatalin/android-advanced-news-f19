@@ -69,7 +69,7 @@ public class ArticleResponse {
         @SerializedName("url")
         @Expose
         private URL articleURL;
-        @SerializedName("imageURL")
+        @SerializedName("urlToImage")
         @Expose
         private URL imageURL;
         @SerializedName("publishedDate")
