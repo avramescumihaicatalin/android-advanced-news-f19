@@ -81,10 +81,10 @@ public class HomeActivity extends BaseActivity {
         Retrofit newsWebServiceRetrofit = NewsWebService.getRetrofitClient();
         NewsAPIRequests newsAPIRequests = newsWebServiceRetrofit.create(NewsAPIRequests.class);
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-dd-MM");
         String currentDate = dtf.format(LocalDateTime.now());
 
-        Call<ArticleResponse> call = newsAPIRequests.queryArticles(searchString, "currentDate-01-12", "currentDate",
+        Call<ArticleResponse> call = newsAPIRequests.queryArticles(searchString, currentDate, currentDate,
                 "popularity", "534a091354c14911aa44a800e5270924");
 
         call.enqueue(new Callback<ArticleResponse>() {
