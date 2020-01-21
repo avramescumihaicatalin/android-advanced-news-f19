@@ -16,7 +16,7 @@ public class NewsViewModel extends ViewModel {
     private MutableLiveData<ArticleResponse> mutableLiveData;
     private NewsRepository newsRepository;
     static final String API_KEY = "4b3b375b6f9e462b8513e1471c5428b9";
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     String currentDate = dtf.format(LocalDateTime.now()).toString();
 
 
