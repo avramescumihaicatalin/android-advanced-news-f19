@@ -10,12 +10,13 @@
             android:id="@+id/category_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Text for TEST"
+            tools:text="Text for category"
             android:layout_gravity="center"
             android:fontFamily="@font/normal_text"
-            android:textSize="16sp"
+            android:textSize="23sp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/colorExtraDark"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/horizontal_recycler_view"
