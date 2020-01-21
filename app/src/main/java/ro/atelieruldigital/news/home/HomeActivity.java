@@ -89,7 +89,7 @@ public class HomeActivity extends BaseActivity {
     private void setRecyclerView() {
         RecyclerView verticalRecyclerView = findViewById(R.id.vertical_recycler_view);
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(App.getAppContext(), RecyclerView.VERTICAL, false));
-        CustomVerticalAdapter customVerticalAdapter = new CustomVerticalAdapter(articleResponses, mPreferences);
+        CustomVerticalAdapter customVerticalAdapter = new CustomVerticalAdapter(articleResponses, mPreferences, this);
         verticalRecyclerView.setAdapter(customVerticalAdapter);
     }
 

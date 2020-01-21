@@ -26,10 +26,12 @@ public class CustomVerticalAdapter extends RecyclerView.Adapter<CustomVerticalVi
 
     CustomHorizontalAdapter customHorizontalAdapter;
     NewsViewModel newsViewModel;
+    HomeActivity homeActivity;
 
-    public CustomVerticalAdapter(ArrayList<ArticleResponse> articleList, ArrayList<String> preferencesList) {
+    public CustomVerticalAdapter(ArrayList<ArticleResponse> articleList, ArrayList<String> preferencesList, HomeActivity homeActivity) {
         this.mArticleList = articleList;
         this.mPreferences = preferencesList;
+        this.homeActivity=homeActivity;
     }
 
     @NonNull
@@ -61,9 +63,9 @@ public class CustomVerticalAdapter extends RecyclerView.Adapter<CustomVerticalVi
     }
 
     public void populare() {
-        newsViewModel = ViewModelProviders.of(new HomeActivity()).get(NewsViewModel.class);
+        newsViewModel = ViewModelProviders.of(homeActivity).get(NewsViewModel.class);
         newsViewModel.init();
-        newsViewModel.getNewsRepo().observe(new HomeActivity(), newsResponse -> {
+        newsViewModel.getNewsRepo().observe(homeActivity, newsResponse -> {
             List<ArticleResponse.Article> newsArticles = newsResponse.getArticles();
             getmArticleList.addAll(newsArticles);
             this.notifyDataSetChanged();
