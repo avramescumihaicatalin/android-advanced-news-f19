@@ -7,7 +7,7 @@
     <string name="label_button_delete_preferences">Delete\n preferences</string>
     <string name="hint_introduce_a_preference">Enter a preference</string>
     <string name="label_button_save_preferences">Save\n preferences</string>
-    <string name="label_introduced_preferences">Pick a date:</string>
+    <string name="label_introduced_preferences">Preferences list:</string>
     <string name="label_button_chose_a_date">Alegeti o data</string>
     <string name="label_chose_a_date">Pick a date:</string>
     <string name="label_sorted_by">Search by:</string>
