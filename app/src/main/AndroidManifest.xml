@@ -27,13 +27,15 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".log_in.BaseActivity" />
-        <activity android:name=".home.HomeActivity" />
-        <activity android:name=".log_in.GoogleSignInActivity" >
+        <activity android:name=".home.HomeActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".log_in.GoogleSignInActivity" >
+
         </activity>
     </application>
 

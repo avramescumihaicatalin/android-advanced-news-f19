@@ -12,4 +12,6 @@
     <string name="label_chose_a_date">Alegeti o data:</string>
     <string name="label_sorted_by">Sortate dupa:</string>
     <string name="hint_introduce_a_subject_for_searching">Introduceti un subiect de cautare</string>
+    <string name="label_search_again">Cautati din nou</string>
+    <string name="label_start_search">Incepeti cautarea</string>
 </resources>

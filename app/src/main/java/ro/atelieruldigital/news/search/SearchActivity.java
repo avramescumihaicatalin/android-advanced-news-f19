@@ -1,6 +1,7 @@
 package ro.atelieruldigital.news.search;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +31,7 @@ import ro.atelieruldigital.news.model.ArticleResponse;
 import ro.atelieruldigital.news.model.NewsAPIRequests;
 import ro.atelieruldigital.news.model.WebService.NewsWebService;
 import ro.atelieruldigital.news.recycler_view.CustomHorizontalAdapter;
+import ro.atelieruldigital.news.recycler_view.CustomSearchAdapter;
 import ro.atelieruldigital.news.recycler_view.CustomVerticalAdapter;
 import timber.log.Timber;
 
@@ -40,7 +42,9 @@ public class SearchActivity extends AppCompatActivity {
     DatePicker mDatePicker;
     Spinner mSpinnerSortBy;
     Button mButtonStartSearching;
+    Button mButtonSearchAgain;
     RecyclerView mRecyclerViewSearch;
+    Group mGroupSearch;
 
     ArrayList<String> spinnerList;
     ArrayList<ArticleResponse.Article> mArticles;
@@ -70,10 +74,13 @@ public class SearchActivity extends AppCompatActivity {
     private void initView() {
         mEditTextInput = findViewById(R.id.edit_text_input);
         mButtonDatePicker = findViewById(R.id.button_date_picker);
+        mButtonDatePicker.setText(getTodayDate());
         mDatePicker = findViewById(R.id.date_picker);
         mSpinnerSortBy = findViewById(R.id.spinner_sort_by);
         mButtonStartSearching = findViewById(R.id.button_start_searching);
+        mButtonSearchAgain = findViewById(R.id.button_search_again);
         mRecyclerViewSearch = findViewById(R.id.recycler_view_search);
+        mGroupSearch = findViewById(R.id.search_group);
     }
 
     private void setDataSpinner() {
@@ -97,7 +104,13 @@ public class SearchActivity extends AppCompatActivity {
                 if (response.body() != null) {
                     ArticleResponse articleResponse = response.body();
                     mArticles = articleResponse.getArticles();
+
                     setRecyclerView();
+                    mGroupSearch.setVisibility(View.GONE);
+                    mButtonSearchAgain.setVisibility(View.VISIBLE);
+                    mRecyclerViewSearch.setVisibility(View.VISIBLE);
+
+                    Toast.makeText(SearchActivity.this, "Cautarea a intors " + mArticles.size() + " rezultate", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -113,8 +126,8 @@ public class SearchActivity extends AppCompatActivity {
     private void setRecyclerView() {
         RecyclerView verticalRecyclerView = findViewById(R.id.recycler_view_search);
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(App.getAppContext(), RecyclerView.VERTICAL, false));
-        CustomHorizontalAdapter customHorizontalAdapter = new CustomHorizontalAdapter(mArticles);
-        verticalRecyclerView.setAdapter(customHorizontalAdapter);
+        CustomSearchAdapter customSearchAdapter= new CustomSearchAdapter(mArticles);
+        verticalRecyclerView.setAdapter(customSearchAdapter);
     }
 
     public void startSearchingOnClick(View view) {
@@ -129,7 +142,8 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
 
-        date = "2020-01-12";
+        date = mButtonDatePicker.getText().toString();
+
         if (mSpinnerSortBy != null) {
             sortBy = mSpinnerSortBy.getSelectedItem().toString();
         }
@@ -150,6 +164,35 @@ public class SearchActivity extends AppCompatActivity {
         ((DatePickerFragment) datePickerFragment).setMonth(month);
         ((DatePickerFragment) datePickerFragment).setDay(day);
         datePickerFragment.show(getSupportFragmentManager(), "DatePicker");
-        mButtonDatePicker.setText("AAAA-ZZ-LL");
+    }
+
+    public static String getTodayDate () {
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        String dayFormated;
+        String monthFormated;
+        if (day <= 9) {
+            dayFormated = "0" + day;
+        } else {
+            dayFormated = String.valueOf(day);
+        }
+        if (month + 1 <= 9) {
+            monthFormated = "0" + (month + 1);
+        } else {
+            monthFormated = String.valueOf(month + 1);
+        }
+
+        String todayDate = year + "-" + dayFormated + "-" + monthFormated;
+
+        return todayDate;
+    }
+
+    public void startSearchAgain(View view) {
+        mButtonSearchAgain.setVisibility(View.GONE);
+        mGroupSearch.setVisibility(View.VISIBLE);
+        mRecyclerViewSearch.setVisibility(View.GONE);
     }
 }

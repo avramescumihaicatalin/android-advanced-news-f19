@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
@@ -31,6 +33,7 @@ import ro.atelieruldigital.news.model.ArticleResponse;
 import ro.atelieruldigital.news.model.NewsAPIRequests;
 import ro.atelieruldigital.news.model.WebService.NewsWebService;
 import ro.atelieruldigital.news.recycler_view.CustomVerticalAdapter;
+import ro.atelieruldigital.news.search.SearchActivity;
 import ro.atelieruldigital.news.utils.PrefUtils;
 import timber.log.Timber;
 
@@ -39,13 +42,21 @@ public class HomeActivity extends BaseActivity {
     ArrayList<ArticleResponse.Article> mArticles;
     ArrayList<String> mPreferences;
 
+    FloatingActionButton fabSearch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        initView();
+
         setPreferencesListForTest();
         getDataFromServer();
+    }
+
+    private void initView() {
+        fabSearch = findViewById(R.id.fab_search);
     }
 
     private void setPreferencesListForTest() {
@@ -114,7 +125,7 @@ public class HomeActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_sign_out) {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this, GoogleSignInActivity.class);
             startActivity(intent);
@@ -122,6 +133,17 @@ public class HomeActivity extends BaseActivity {
             return true;
         }
 
+        if (id == R.id.action_search) {
+            Intent intentGoToSearchActivity = new Intent(this, SearchActivity.class);
+            startActivity(intentGoToSearchActivity);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    public void goToSearchActivity(View view) {
+        Intent intentGoToSearchActivity = new Intent(this, SearchActivity.class);
+        startActivity(intentGoToSearchActivity);
     }
 }

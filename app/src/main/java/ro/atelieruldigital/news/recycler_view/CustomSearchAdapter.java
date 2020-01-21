@@ -1,16 +1,13 @@
 package ro.atelieruldigital.news.recycler_view;
 
-import android.app.LauncherActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,21 +16,20 @@ import ro.atelieruldigital.news.App;
 import ro.atelieruldigital.news.R;
 import ro.atelieruldigital.news.model.ArticleResponse;
 import ro.atelieruldigital.news.web_view.WebViewActivity;
-import timber.log.Timber;
 
-public class CustomHorizontalAdapter extends RecyclerView.Adapter<CustomHorizontalViewHolder> {
+public class CustomSearchAdapter extends RecyclerView.Adapter<CustomHorizontalViewHolder> {
 
     private ArrayList<ArticleResponse.Article> mArticleList;
     public static final String WEB_VIEW_URL = "WEB_VIEW_URL";
 
-    public CustomHorizontalAdapter(ArrayList<ArticleResponse.Article> articleList) {
+    public CustomSearchAdapter(ArrayList<ArticleResponse.Article> articleList) {
         this.mArticleList = articleList;
     }
 
     @NonNull
     @Override
     public CustomHorizontalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CustomHorizontalViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.horizontal_layout_news_card,
+        return new CustomHorizontalViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.search_layout_news_card,
                 parent, false));
     }
 
