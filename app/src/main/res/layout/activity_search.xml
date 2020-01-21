@@ -15,7 +15,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/hint_introduce_a_preference"
+        android:hint="@string/hint_introduce_a_subject_for_searching"
         android:layout_marginTop="10dp"
         android:paddingStart="16dp"/>
 
@@ -32,11 +32,13 @@
 
     <Button
         android:id="@+id/button_date_picker"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/label_choose_a_date"
         app:layout_constraintTop_toBottomOf="@id/edit_text_input"
-        android:background="@drawable/ic_date_range_black_24dp"
+        android:background="@drawable/ripple_button"
+        android:text="AAAA-ZZ-LL"
+        android:onClick="displayDatePickerOnClick"
         android:padding="16dp"
         android:elevation="4dp"/>
 
@@ -71,11 +73,24 @@
         app:layout_constraintRight_toRightOf="parent"
         android:visibility="invisible"/>
 
+    <Button
+        android:id="@+id/button_start_searching"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_button"
+        android:text="Incepeti cautarea"
+        app:layout_constraintTop_toBottomOf="@id/label_choose_a_sorting_pattern"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:onClick="startSearchingOnClick"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_search"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/label_choose_a_sorting_pattern"
+        app:layout_constraintTop_toBottomOf="@id/button_start_searching"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
