@@ -80,10 +80,11 @@ public class GoogleSignInActivity extends BaseActivity implements
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //Timber.e("Current user email: "+currentUser.getEmail().toString());
         if (currentUser != null) {
-            Log.d(TAG, currentUser.getEmail().toString());
+            Log.d(TAG, currentUser.getEmail());
             updateUI(currentUser);
             if (!PrefUtils.getUser(this).equals(mAuth.getCurrentUser().getEmail())) {
-                PrefUtils.setUser(this, mAuth.getCurrentUser().getEmail());
+                String currentEmail = mAuth.getCurrentUser().getEmail();
+                PrefUtils.setUser(this,currentEmail );
                 Intent goToUserPreferencesActivity = new Intent(this, UserPreferencesActivity.class);
                 startActivity(goToUserPreferencesActivity);
             } else {
