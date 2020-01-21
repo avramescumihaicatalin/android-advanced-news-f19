@@ -7,9 +7,9 @@ import ro.atelieruldigital.news.App;
 
 public class PrefUtils {
 
-    public static final String PREF_USER = "PREF_USER";
-    public static final String DEFAULT_STRING_VALUE = "";
-    public static final String PREF_USER_LIST = "PREF_USER_LIST";
+    private static final String PREF_USER = "PREF_USER";
+    private static final String DEFAULT_STRING_VALUE = "";
+    private static final String PREF_USER_LIST = "PREF_USER_LIST";
 
     private static SharedPreferences getSharedPreferencesInstance(Context context) {
         return context.

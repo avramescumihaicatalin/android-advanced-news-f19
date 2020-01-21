@@ -8,7 +8,6 @@
     android:weightSum="4">
 
     <ProgressBar
-        android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,11 +23,10 @@
 
         <ImageView
             android:paddingTop="60dp"
-            android:id="@+id/googleIcon"
             android:layout_width="400dp"
             android:layout_height="400dp"
             android:contentDescription="Google Log In"
-            android:src="@drawable/firebase_logo_vertical" />
+            android:src="@drawable/news_logo_vertical" />
 
 
     </LinearLayout>

@@ -2,6 +2,7 @@ package ro.atelieruldigital.news.web_view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -11,7 +12,7 @@ import ro.atelieruldigital.news.recycler_view.CustomHorizontalAdapter;
 
 public class WebViewActivity extends AppCompatActivity {
 
-    WebView mWebView;
+    private WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void enableWebView() {
         Bundle bundle = getIntent().getExtras();
         String URL = bundle.getString(CustomHorizontalAdapter.WEB_VIEW_URL);

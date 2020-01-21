@@ -25,7 +25,7 @@ import timber.log.Timber;
 
 public class CustomHorizontalAdapter extends RecyclerView.Adapter<CustomHorizontalViewHolder> {
 
-    private ArrayList<ArticleResponse.Article> mArticleList;
+    private final ArrayList<ArticleResponse.Article> mArticleList;
     public static final String WEB_VIEW_URL = "WEB_VIEW_URL";
 
     public CustomHorizontalAdapter(ArrayList<ArticleResponse.Article> articleList) {

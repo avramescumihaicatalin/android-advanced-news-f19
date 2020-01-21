@@ -41,12 +41,12 @@ import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity {
 
-    ArrayList<ArticleResponse.Article> mArticles;
-    ArrayList<String> mPreferences;
-    HashMap<String, ArrayList<ArticleResponse.Article>> mDataSet;
+    private ArrayList<ArticleResponse.Article> mArticles;
+    private ArrayList<String> mPreferences;
+    private HashMap<String, ArrayList<ArticleResponse.Article>> mDataSet;
 
-    FloatingActionButton mFabSearch;
-    ProgressBar mProgressBar;
+    private FloatingActionButton mFabSearch;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class HomeActivity extends BaseActivity {
     private void setPreferencesList() {
         mPreferences = new ArrayList<>();
         String userSavedPreferences = PrefUtils.getUserPreferences(this);
-        String str[] = userSavedPreferences.split(",");
+        String[] str = userSavedPreferences.split(",");
         mPreferences = new ArrayList<>(Arrays.asList(str));
     }
 
@@ -146,7 +146,6 @@ public class HomeActivity extends BaseActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_sign_out) {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this, GoogleSignInActivity.class);
@@ -170,7 +169,7 @@ public class HomeActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void goToSearchActivity(View view) {
+    public void goToSearchActivity() {
         Intent intentGoToSearchActivity = new Intent(this, SearchActivity.class);
         startActivity(intentGoToSearchActivity);
     }

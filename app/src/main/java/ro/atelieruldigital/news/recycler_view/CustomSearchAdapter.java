@@ -21,8 +21,8 @@ import ro.atelieruldigital.news.web_view.WebViewActivity;
 
 public class CustomSearchAdapter extends RecyclerView.Adapter<CustomHorizontalViewHolder> {
 
-    private ArrayList<ArticleResponse.Article> mArticleList;
-    public static final String WEB_VIEW_URL = "WEB_VIEW_URL";
+    private final ArrayList<ArticleResponse.Article> mArticleList;
+    private static final String WEB_VIEW_URL = "WEB_VIEW_URL";
 
     public CustomSearchAdapter(ArrayList<ArticleResponse.Article> articleList) {
         this.mArticleList = articleList;

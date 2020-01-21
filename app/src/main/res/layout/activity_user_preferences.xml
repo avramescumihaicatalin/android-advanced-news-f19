@@ -92,6 +92,6 @@
         android:textColor="@android:color/white"
         android:background="@drawable/ripple_button"
         android:padding="8dp"
-        android:layout_margin="8dp"/>
+        android:layout_margin="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

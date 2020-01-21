@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">NOW News</string>
-    <string name="api_key">534a091354c14911aa44a800e5270924</string>
     <string name="article_title">Title</string>
     <string name="article_description">Short description of article Short description of article Short description of article Short description of article Short description of article Short description of article Short description of article</string>
     <string name="label_preference">Enter favorite news categories</string>
@@ -8,10 +7,12 @@
     <string name="hint_introduce_a_preference">Enter a preference</string>
     <string name="label_button_save_preferences">Save\n preferences</string>
     <string name="label_introduced_preferences">Preferences list:</string>
-    <string name="label_button_chose_a_date">Alegeti o data</string>
     <string name="label_chose_a_date">Pick a date:</string>
     <string name="label_sorted_by">Search by:</string>
     <string name="hint_introduce_a_subject_for_searching">Enter the search input</string>
     <string name="label_search_again">Search again </string>
     <string name="label_start_search">Start search</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="search">Search</string>
+    <string name="edit_preferences">Edit Preferences</string>
 </resources>

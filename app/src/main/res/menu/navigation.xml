@@ -4,16 +4,16 @@
     <item
         android:id="@+id/action_sign_out"
         android:orderInCategory="100"
-        android:title="Sign Out"
+        android:title="@string/sign_out"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_search"
         android:orderInCategory="100"
-        android:title="Search"
+        android:title="@string/search"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_edit_preferences"
         android:orderInCategory="100"
-        android:title="Edit Preferences"
+        android:title="@string/edit_preferences"
         app:showAsAction="never" />
 </menu>

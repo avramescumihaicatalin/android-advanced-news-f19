@@ -17,8 +17,8 @@ import ro.atelieruldigital.news.model.ArticleResponse;
 
 public class CustomVerticalAdapter extends RecyclerView.Adapter<CustomVerticalViewHolder> {
 
-    private HashMap<String, ArrayList<ArticleResponse.Article>> mDataSet;
-    private ArrayList<String> mPreferences;
+    private final HashMap<String, ArrayList<ArticleResponse.Article>> mDataSet;
+    private final ArrayList<String> mPreferences;
 
     public CustomVerticalAdapter(HashMap<String, ArrayList<ArticleResponse.Article>> mDataSet, ArrayList<String> preferencesList) {
         this.mDataSet = mDataSet;

@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import ro.atelieruldigital.news.R;
 
 class CustomVerticalViewHolder extends RecyclerView.ViewHolder {
-    TextView mTextView;
-    RecyclerView mHorizontalRecyclerView;
+    final TextView mTextView;
+    final RecyclerView mHorizontalRecyclerView;
 
     public CustomVerticalViewHolder(@NonNull View itemView) {
         super(itemView);

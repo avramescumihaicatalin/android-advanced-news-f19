@@ -4,7 +4,6 @@
     <color name="colorAccent">#f9683a</color>
     <color name="colorPrimaryDark">#870000</color>
     <color name="colorExtraDark">#800000</color>
-    <color name="primaryTextColor">#ffffff</color>
     <color name="colorGrey">#cccccc</color>
 </resources>
 

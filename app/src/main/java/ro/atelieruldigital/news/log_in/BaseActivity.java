@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
 
     @VisibleForTesting
-    public ProgressBar mProgressBar;
+    private ProgressBar mProgressBar;
 
     public void setProgressBar(int resId) {
         mProgressBar = findViewById(resId);
@@ -30,7 +30,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void hideProgressBar() {
+    private void hideProgressBar() {
         if (mProgressBar != null) {
             mProgressBar.setVisibility(View.INVISIBLE);
         }
