@@ -15,13 +15,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".web_view.WebViewActivity"></activity>
-        <activity android:name=".search.SearchActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".search.SearchActivity" />
         <activity
             android:name=".preferences.UserPreferencesActivity"
             android:windowSoftInputMode="adjustResize">
@@ -35,7 +29,11 @@
         <activity android:name=".log_in.BaseActivity" />
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".log_in.GoogleSignInActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
