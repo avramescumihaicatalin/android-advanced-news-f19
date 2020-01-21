@@ -2,7 +2,6 @@ package ro.atelieruldigital.news.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,10 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,7 +85,6 @@ public class HomeActivity extends BaseActivity {
             public void onFailure(@NotNull Call call, @NotNull Throwable t) {
                 Timber.e(t, "Failed to get data:");
                 System.out.println("Fail to GET data");
-
             }
         });
     }
@@ -102,7 +98,7 @@ public class HomeActivity extends BaseActivity {
 
     public void onBackPressed() {
         Timber.d("onBackPressed Called");
-        Toast.makeText(this,"Back button pressed. Exit App",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Back button pressed. Exit App", Toast.LENGTH_LONG).show();
         Intent setIntent = new Intent(Intent.ACTION_MAIN);
         setIntent.addCategory(Intent.CATEGORY_HOME);
         setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

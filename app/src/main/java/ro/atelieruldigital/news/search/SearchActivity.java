@@ -85,9 +85,9 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setDataSpinner() {
         spinnerList = new ArrayList<>();
-        spinnerList.add("popularity");
-        spinnerList.add("publishedAt");
-        spinnerList.add("relevancy");
+        spinnerList.add("Popularity");
+        spinnerList.add("Published At");
+        spinnerList.add("Relevancy");
     }
 
     private void getDataFromServer(String searchingString, String date, String sortBy) {
@@ -110,7 +110,7 @@ public class SearchActivity extends AppCompatActivity {
                     mButtonSearchAgain.setVisibility(View.VISIBLE);
                     mRecyclerViewSearch.setVisibility(View.VISIBLE);
 
-                    Toast.makeText(SearchActivity.this, "Cautarea a intors " + mArticles.size() + " rezultate", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this,  mArticles.size() + " news found", Toast.LENGTH_SHORT).show();
                 }
             }
 
