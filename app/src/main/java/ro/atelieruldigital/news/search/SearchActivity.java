@@ -30,22 +30,24 @@ import ro.atelieruldigital.news.R;
 import ro.atelieruldigital.news.model.ArticleResponse;
 import ro.atelieruldigital.news.model.NewsAPIRequests;
 import ro.atelieruldigital.news.model.WebService.NewsWebService;
+import ro.atelieruldigital.news.recycler_view.CustomHorizontalAdapter;
 import ro.atelieruldigital.news.recycler_view.CustomSearchAdapter;
+import ro.atelieruldigital.news.recycler_view.CustomVerticalAdapter;
 import timber.log.Timber;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private EditText mEditTextInput;
-    private Button mButtonDatePicker;
-    private DatePicker mDatePicker;
-    private Spinner mSpinnerSortBy;
-    private Button mButtonStartSearching;
-    private Button mButtonSearchAgain;
-    private RecyclerView mRecyclerViewSearch;
-    private Group mGroupSearch;
+    EditText mEditTextInput;
+    Button mButtonDatePicker;
+    DatePicker mDatePicker;
+    Spinner mSpinnerSortBy;
+    Button mButtonStartSearching;
+    Button mButtonSearchAgain;
+    RecyclerView mRecyclerViewSearch;
+    Group mGroupSearch;
 
-    private ArrayList<String> spinnerList;
-    private ArrayList<ArticleResponse.Article> mArticles;
+    ArrayList<String> spinnerList;
+    ArrayList<ArticleResponse.Article> mArticles;
 
 
     @Override
@@ -128,7 +130,7 @@ public class SearchActivity extends AppCompatActivity {
         verticalRecyclerView.setAdapter(customSearchAdapter);
     }
 
-    public void startSearchingOnClick() {
+    public void startSearchingOnClick(View view) {
         String searchString = "";
         String date = "";
         String sortBy = "";
@@ -149,7 +151,7 @@ public class SearchActivity extends AppCompatActivity {
         getDataFromServer(searchString, date, sortBy);
     }
 
-    public void displayDatePickerOnClick() {
+    public void displayDatePickerOnClick(View view) {
         // set today as default date
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -164,7 +166,7 @@ public class SearchActivity extends AppCompatActivity {
         datePickerFragment.show(getSupportFragmentManager(), "DatePicker");
     }
 
-    private static String getTodayDate() {
+    public static String getTodayDate () {
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -183,10 +185,12 @@ public class SearchActivity extends AppCompatActivity {
             monthFormated = String.valueOf(month + 1);
         }
 
-        return year + "-" + dayFormated + "-" + monthFormated;
+        String todayDate = year + "-" + dayFormated + "-" + monthFormated;
+
+        return todayDate;
     }
 
-    public void startSearchAgain() {
+    public void startSearchAgain(View view) {
         mButtonSearchAgain.setVisibility(View.GONE);
         mGroupSearch.setVisibility(View.VISIBLE);
         mRecyclerViewSearch.setVisibility(View.GONE);

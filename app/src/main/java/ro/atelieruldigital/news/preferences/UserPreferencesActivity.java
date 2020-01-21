@@ -24,14 +24,14 @@ import ro.atelieruldigital.news.utils.PrefUtils;
 
 public class UserPreferencesActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText mEditTextPreferences;
-    private TextView mTextViewPreferencesList;
-    private FloatingActionButton mFab;
-    private Button mButtonClearList;
-    private Button mButtonSavePreferences;
-    private ConstraintLayout mConstraintLayoutPreferences;
+    EditText mEditTextPreferences;
+    TextView mTextViewPreferencesList;
+    FloatingActionButton mFab;
+    Button mButtonClearList;
+    Button mButtonSavePreferences;
+    ConstraintLayout mConstraintLayoutPreferences;
 
-    private ArrayList<String> mPreferencesList;
+    ArrayList<String> mPreferencesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

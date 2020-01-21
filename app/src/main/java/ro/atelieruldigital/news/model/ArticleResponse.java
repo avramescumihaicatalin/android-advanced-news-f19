@@ -21,7 +21,6 @@ public class ArticleResponse {
     Integer totalResults;
     @SerializedName("articles")
     @Expose
-    private
     ArrayList<Article> articles;
 
     public String getStatus() {
@@ -85,7 +84,7 @@ public class ArticleResponse {
             this.source = source;
         }
 
-        String getAuthor() {
+        public String getAuthor() {
             return author;
         }
 

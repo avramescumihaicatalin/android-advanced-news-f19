@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".search.SearchActivity"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:id="@+id/constraint_layout_search">
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/search_group"

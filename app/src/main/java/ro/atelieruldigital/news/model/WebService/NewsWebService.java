@@ -12,7 +12,7 @@ public class NewsWebService {
     static final String API_KEY = "4b3b375b6f9e462b8513e1471c5428b9";
     private static final String BASE_URL="https://newsapi.org/";
     private NewsWebService newsApiService;
-    private static Retrofit retrofit;
+    public static Retrofit retrofit;
 
     public static Retrofit getRetrofitClient() {
         // TODO: Initialize newsApiService with Retrofit
@@ -27,8 +27,8 @@ public class NewsWebService {
         return retrofit;
     }
 
-    private Call<ArticleResponse> queryArticles(String searchString, String from,
-                                                String to, String sort, String apiKey) {
+    public Call<ArticleResponse> queryArticles(String searchString, String from,
+                                               String to, String sort, String apiKey) {
         return newsApiService.queryArticles(searchString, from, to , sort, apiKey);
     }
 }

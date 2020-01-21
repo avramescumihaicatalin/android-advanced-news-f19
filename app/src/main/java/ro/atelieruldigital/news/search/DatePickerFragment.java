@@ -12,7 +12,7 @@ import androidx.fragment.app.DialogFragment;
 
 import ro.atelieruldigital.news.R;
 
-class DatePickerFragment extends DialogFragment {
+public class DatePickerFragment extends DialogFragment {
 
 /*    OnDataPassStart dataPasser;
 
@@ -57,7 +57,7 @@ class DatePickerFragment extends DialogFragment {
         return new DatePickerDialog(getActivity(), dateSetListener, mYear, mMonth, mDay);
     }
 
-    private final DatePickerDialog.OnDateSetListener dateSetListener =
+    private DatePickerDialog.OnDateSetListener dateSetListener =
             new DatePickerDialog.OnDateSetListener() {
                 public void onDateSet(DatePicker view, int year, int month, int day) {
 //                    Toast.makeText(getActivity(), "The selected date is " + view.getYear() +
@@ -69,12 +69,12 @@ class DatePickerFragment extends DialogFragment {
                     String dayFormated = "";
                     String monthFormated = "";
                     if (view.getDayOfMonth() <= 9) {
-                        dayFormated = "0" + view.getDayOfMonth();
+                        dayFormated = "0" + String.valueOf(view.getDayOfMonth());
                     } else {
                         dayFormated = String.valueOf(view.getDayOfMonth());
                     }
                     if (view.getMonth() + 1 <= 9) {
-                        monthFormated = "0" + (view.getMonth() + 1);
+                        monthFormated = "0" + String.valueOf(view.getMonth() + 1);
                     } else {
                         monthFormated = String.valueOf(view.getMonth() + 1);
                     }
@@ -86,7 +86,7 @@ class DatePickerFragment extends DialogFragment {
                     mbtn=getActivity().findViewById(R.id.button_date_picker);
                     //Log.e("SETDATA",mbtn.getText().toString());
                     //mbtn.setText(startDate);
-                    if(mbtn.getText().toString().equals("DD" + "/" + "MM" + "/" + "YY")) {
+                    if(mbtn.getText().toString().equals("DD"+"/"+"MM"+"/"+"YY")==true) {
                         mbtn.setText(startDate);
                         Log.e("SETDATA", mbtn.getText().toString());
                     }

@@ -1,4 +1,4 @@
 package ro.atelieruldigital.news.model.DataBase;
 
-class ArticleDAO {
+public class ArticleDAO {
 }

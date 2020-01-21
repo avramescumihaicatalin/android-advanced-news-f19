@@ -35,6 +35,7 @@
                 android:textStyle="bold"
                 android:paddingLeft="20dp"
                 android:textSize="16sp"
+                android:layout_marginTop="10dp"
                 android:text="@string/article_title"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/image_view" />
@@ -57,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/normal_text"
                 android:layout_margin="16dp"
-                android:text="Find more"
+                android:text="@string/find_more"
                 android:textColor="#fff"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
