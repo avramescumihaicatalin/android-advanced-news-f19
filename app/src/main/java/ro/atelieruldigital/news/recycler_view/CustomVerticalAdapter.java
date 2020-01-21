@@ -1,6 +1,7 @@
 package ro.atelieruldigital.news.recycler_view;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -33,11 +34,14 @@ public class CustomVerticalAdapter extends RecyclerView.Adapter<CustomVerticalVi
 
     @Override
     public void onBindViewHolder(@NonNull CustomVerticalViewHolder holder, int position) {
-        holder.mTextView.setText(mPreferences.get(position));
-        holder.mHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(App.getAppContext(), RecyclerView.HORIZONTAL, false));
-        CustomHorizontalAdapter customHorizontalAdapter = new CustomHorizontalAdapter(mDataSet.get(mPreferences.get(position)));
-        holder.mHorizontalRecyclerView.setAdapter(customHorizontalAdapter);
-
+        if (mDataSet.get(mPreferences.get(position)).size() > 0) {
+            holder.mTextView.setText(mPreferences.get(position));
+            holder.mHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(App.getAppContext(), RecyclerView.HORIZONTAL, false));
+            CustomHorizontalAdapter customHorizontalAdapter = new CustomHorizontalAdapter(mDataSet.get(mPreferences.get(position)));
+            holder.mHorizontalRecyclerView.setAdapter(customHorizontalAdapter);
+        } else {
+            holder.mTextView.setVisibility(View.GONE);
+        }
     }
 
     @Override
