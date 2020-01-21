@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import ro.atelieruldigital.news.App;
@@ -35,7 +37,14 @@ public class CustomSearchAdapter extends RecyclerView.Adapter<CustomHorizontalVi
 
     @Override
     public void onBindViewHolder(@NonNull CustomHorizontalViewHolder holder, int position) {
-        holder.mTextViewTitle.setText(mArticleList.get(position).getTitle());
+        if (mArticleList.get(position).getImageURL() != null) {
+            String imageUri = mArticleList.get(position).getImageURL().toString();
+            Picasso.with(App.getAppContext()).load(imageUri).into(holder.mImageView);
+        }
+
+        if (mArticleList.get(position).getTitle() != null) {
+            holder.mTextViewTitle.setText(mArticleList.get(position).getTitle());
+        }
         if (mArticleList.get(position).getDescription().length() > 150) {
             holder.mTextViewDescription.setText(mArticleList.get(position).getDescription().substring(0, 150) + "...");
         } else {
